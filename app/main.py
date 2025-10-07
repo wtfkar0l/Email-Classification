@@ -18,7 +18,10 @@ from openai import OpenAI
 # import spacy
 # nlp = spacy.load("pt_core_news_sm")
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "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")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise RuntimeError("OPENAI_API_KEY não está definida. Configure-a no ambiente ou no GitHub Actions.")
+
 if not OPENAI_API_KEY:
   print("[WARN] OPENAI_API_KEY não definido no ambiente.")
 client = OpenAI(api_key=OPENAI_API_KEY)
